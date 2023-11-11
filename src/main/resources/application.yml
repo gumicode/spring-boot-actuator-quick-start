@@ -1,0 +1,27 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health # 내가 추가하고자 하는 endpoint 를 추가한다.
+  endpoint:
+    health:
+      show-components: always # 사용중인 health components 를 모두 노출시킨다. 운영 환경에서는 주의해서 사용해야 한다.
+      show-details: always # 사용중인 health components 의 상세수치를 모두 노출시킨다. 운영 환경에서는 주의해서 사용해야 한다.
+  health:
+    defaults:
+      enabled: false # 내가 원하는 것만 활성화 시키기 위해 기본으로 활성화 되는 components 를 비활성화 시킨다.
+    db:
+      enabled: true # db component 를 활성화 시킨다. DB Connection 을 체크할 수 있다.
+    diskSpace:
+      enabled: true # diskspace 를 활성화 시킨다. 디스크 용량을 확인할 수 있다.
+    jms:
+      enabled: true # jms 를 활성화 시킨다. JMS Connection 을 체크할 수 있다.
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306
+    username: root
+    password: 1234
+    hikari:
+      connection-timeout: 1000 # DB Connection Timeout (ms)
